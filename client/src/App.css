@@ -1,8 +1,20 @@
+.container_sunset {
+    background-image: url("./assets/images/sunset.png") !important;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+.container_sunrise {
+    background-image: url("./assets/images/sunrise.jpg") !important;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
 .footer {
     text-align: center;
     font-size: 20px;
     font-weight: 600;
-    color: gray;
+    color: rgb(211, 209, 209);
     padding-top: 20px;
 }
 .mt-0 {

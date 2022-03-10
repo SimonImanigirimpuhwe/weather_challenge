@@ -1,21 +1,23 @@
-import { Container } from "@chakra-ui/react"
+import { Container } from "@chakra-ui/react";
 
 
-const Layout = ({children, title, description, keywords, ftPos, isEmpty}) => {
+const Layout = ({children, title, description, keywords, ftPos, isEmpty, isSunrise}) => {
     return (
-        <Container flexDirection={"row"}>
-            <head>
-                <title>{title}</title>
-                <meta title="description" content={description} />
-                <meta title="keywords" content={keywords} />
-            </head>
-            <main>
-                {children}
-            </main>
-            <footer className={`footer ${ftPos} ${isEmpty && 'isEmpty'}`}>
-                <h4>@Weather &copy; 2022</h4>
-            </footer>
-        </Container>
+        <div className={`${isSunrise ? "container_sunrise" : "container_sunset"}`}>
+            <Container flexDirection={"row"}>
+                <head>
+                    <title>{title}</title>
+                    <meta title="description" content={description} />
+                    <meta title="keywords" content={keywords} />
+                </head>
+                <main>
+                    {children}
+                </main>
+                <footer className={`footer ${ftPos} ${isEmpty && 'isEmpty'}`}>
+                    <h4>@Weather &copy; 2022</h4>
+                </footer>
+            </Container>
+        </div>
     )
 };
 
@@ -26,5 +28,5 @@ Layout.defaultProps = {
     description: "WEATHER WEB",
     keywords: "WEATHER WEB",
     ftPos: "mt-0",
-    isEmpty: true
+    isEmpty: true,
   };
