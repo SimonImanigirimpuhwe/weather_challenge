@@ -12,6 +12,7 @@ import {SiWindicss} from "react-icons/si";
 import {CgArrowsMergeAltV} from "react-icons/cg";
 import {MdVisibility} from "react-icons/md";
 import { Separator } from '../Separator';
+import { useEffect, useState } from 'react';
 
 
 const Row = ({icon, label, value}) => {
@@ -29,6 +30,12 @@ const Row = ({icon, label, value}) => {
 }
 
 const HeaderCard = ({name, time, temp}) => {
+    const [isLess, setIsLess] = useState(+temp.slice(0, 2) < 20 ? true:false);
+
+    useEffect(() => {
+        setIsLess(+temp.slice(0, 2) > 20 ? false:true)
+    },[temp]);
+
     return (
     <Stack
     borderWidth="1px"
@@ -43,17 +50,17 @@ const HeaderCard = ({name, time, temp}) => {
         flex={1}
         flexDirection="column"
         >
-        <Flex bg={"gray.500"} textColor="white" height={10} p="2">
+        <Flex bg={"gray.500"} textColor="white" height={10} p="2" borderTopRightRadius="md" borderTopLeftRadius="md" >
             <Text>{name}</Text>
             <Text marginLeft={"auto"}>{`As of ${time}`}</Text>
         </Flex>
         <Flex direction={"row"} p="2">
             <Stack direction={"column"}>
                 <Text>{temp}</Text>
-                <Text>{temp < 20 ? "Cloudy" : "Sunny"}</Text>
+                <Text>{isLess ? "Cloudy" : "Sunny"}</Text>
             </Stack>
             <Stack marginLeft={"auto"}>
-                {temp < 20 ? <WiDayCloudy color='gray' size={30}/> : <BsFillSunFill color='orange' size={30}/>}
+                {isLess? <WiDayCloudy color='gray' size={30}/> : <BsFillSunFill color='orange' size={30}/>}
             </Stack>
         </Flex>
     </Stack>
@@ -146,7 +153,7 @@ return (
 Row.propTypes = {
     icon: PropTypes.elementType, 
     label: PropTypes.string, 
-    value: PropTypes.string
+    value: PropTypes.number
 }
 
 HeaderCard.propTypes = {

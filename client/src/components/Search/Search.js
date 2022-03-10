@@ -19,7 +19,7 @@ const Search = ({searchTerm, onSearch, handleSearch, isSearching}) => {
     const searchIconColor = useColorModeValue("gray.700", "gray.200");
     const inputBg = useColorModeValue("white", "gray.800");
     return (
-        <Flex justifyContent={"center"} mt={20}>
+        <Flex justifyContent={"center"} pt={20}>
             <InputGroup
                 bg={inputBg}
                 borderRadius="15px"
